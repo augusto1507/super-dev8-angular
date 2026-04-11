@@ -1,0 +1,20 @@
+<div>
+    <div>
+        <label for="area">área do imovel</label>
+        <input type="number" id="area" [(ngModel)]="area">
+    </div>
+    <div>
+        <label for="valor">Valor do imovel</label>
+        <input type="number" id="valor" [(ngModel)]="valor">
+    </div>
+    <div>
+        <button type="button" (click)="mostrarValorMetroQuadrado()">Mostra valor do metro quadrado</button>
+    </div>
+
+    @if (valorMetro !== null) {
+        <div>
+            <p>Valor metro quadrado</p>
+            <p>{{valorMetro}}</p>
+        </div>
+    }
+</div>
