@@ -1,0 +1,60 @@
+<div>
+    <label for="campo-nome">Nome</label>
+    <input type="text" id="campo-nome" [(ngModel)]="nome">
+</div>
+<div>
+    <label for="campo-data-nascimento">Data de nacsimento</label>
+    <input type="text" id="campo-data-nascimento" [(ngModel)]="dataNascimento">
+</div>
+<div>
+    <label for="campo-valor-hora">Valor hora</label>
+    <input type="number" id="campo-valor-hora">
+</div>
+<div>
+    <label for="campo-quantidade-hora">Quantidade de horas trabalhadas</label>
+    <input type="number" id="campo-quantidade-hora">
+</div>
+<div>
+    <label for="campo-vale-refeicao">Valor vale refeição</label>
+    <input type="number" id="campo-vale-refeicao">
+</div>
+<div>
+    <label for="campo-vale-tranporte">Valor vale transporte</label>
+    <input type="number" id="campo-vale-tranporte">
+</div>
+<div>
+    <label for="campo-plano-saude">Valor do plano de saúde</label>
+    <select id="campo-plano-saude">
+        <option value=300>R$ 300,00</option>
+        <option value=500>R$ 500,00</option>
+        <option value=700>R$ 700,00</option>
+    </select>
+</div>
+
+<button (click)="salvar()">Salvar</button>
+
+<ul>
+
+    @if (colaboradores.length === 0) {
+        <span>Não possui colaboradores cadastrados</span>
+    }@else {
+        @for (colaborador of colaboradores;let i = $index; track colaborador) {
+            <li>
+                {{colaborador}} - {{datasNacsimentos[i]}}
+                <button (click)="apagar(nome)" class="text-red-600"><li class="fa-solid fa-trash"></li></button>
+            </li>
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>

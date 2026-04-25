@@ -5,5 +5,6 @@ export const routes: Routes = [
     {path: "calculadora", loadComponent: () => import (`./calculadora/calculadora`) .then(x => x.CalculadoraComponent)},
     {path: "imovel" , loadComponent: () => import (`./imovel/imovel`) .then(x => x.ImovelComponent)},
     {path: "clientes" , loadComponent: () => import (`./clientes/clientes`) .then(x => x.ClientesComponent)},
-    {path: "produtos" , loadComponent: () => import(`./produtos/produtos`) .then(x => x.ProdutosComponent)}
+    {path: "produtos" , loadComponent: () => import(`./produtos/produtos`) .then(x => x.ProdutosComponent)},
+    {path: "colaboradores" , loadComponent: () => import(`./colaboradores/colaboradores`) .then(x => x.ColaboradoreComponent)}
 ];
