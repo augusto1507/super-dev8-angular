@@ -1,0 +1,102 @@
+<div class="max-w-md mx-auto bg-white shadow-xl rounded-2xl p-6 mt-6 border border-gray-100">
+
+    <!-- Header -->
+    <div class="mb-4">
+        <h2 class="text-2xl font-bold text-gray-800">Cadastro de Produto</h2>
+        <p class="text-sm text-gray-500">Adicione e gerencie seus produtos</p>
+    </div>
+
+    <!-- Form -->
+    <div class="space-y-4">
+
+        <div>
+            <label for="campo-nome" class="block text-sm font-medium text-gray-600">
+                Nome do produto
+            </label>
+            <input 
+                type="text" 
+                id="campo-nome" 
+                [(ngModel)]="nome" 
+                placeholder="Ex: Camiseta"
+                class="mt-1 w-full border border-gray-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-300 outline-none p-2.5 rounded-lg transition">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+            <div>
+                <label for="campo-quantidade" class="block text-sm font-medium text-gray-600">
+                    Quantidade
+                </label>
+                <input 
+                    type="number" 
+                    id="campo-quantidade" 
+                    [(ngModel)]="quantidade" 
+                    class="mt-1 w-full border border-gray-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-300 outline-none p-2.5 rounded-lg transition">
+            </div>
+
+            <div>
+                <label for="campo-valor" class="block text-sm font-medium text-gray-600">
+                    Valor (R$)
+                </label>
+                <input 
+                    type="number" 
+                    id="campo-valor" 
+                    [(ngModel)]="valor" 
+                    class="mt-1 w-full border border-gray-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-300 outline-none p-2.5 rounded-lg transition">
+            </div>
+        </div>
+
+        <button 
+            (click)="salvar()" 
+            class="w-full bg-teal-500 hover:bg-teal-600 active:scale-[0.98] text-white font-semibold py-2.5 rounded-lg shadow-md transition">
+            Salvar produto
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Lista -->
+<div class="max-w-md mx-auto mt-6">
+
+    @if (quantidades.length === 0) {
+        <div class="text-center text-gray-500 bg-gray-50 border border-dashed border-gray-300 p-4 rounded-lg">
+            Nenhum produto cadastrado
+        </div>
+    } @else {
+
+        <ul class="space-y-3">
+            @for(produto of produtos; let i = $index; track produto){
+
+                <li class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+
+                    <div class="flex flex-col">
+                        <span class="font-medium text-gray-800">{{produto}}</span>
+                        <span class="text-sm text-gray-500">
+                            {{quantidades[i]}} unidades • R$ {{valores[i]}}
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+
+                        <button 
+                            class="p-2 rounded-md hover:bg-yellow-100 text-yellow-600 transition"
+                            (click)="preencherEditar(produto, quantidades[i], valores[i])">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+
+                        <button 
+                            class="p-2 rounded-md hover:bg-red-100 text-red-600 transition"
+                            (click)="apagar(produto)">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+
+                    </div>
+
+                </li>
+
+            }
+        </ul>
+
+    }
+
+</div>
