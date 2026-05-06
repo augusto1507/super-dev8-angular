@@ -1,60 +1,188 @@
-<div>
-    <label for="campo-nome">Nome</label>
-    <input type="text" id="campo-nome" [(ngModel)]="nome">
-</div>
-<div>
-    <label for="campo-data-nascimento">Data de nacsimento</label>
-    <input type="text" id="campo-data-nascimento" [(ngModel)]="dataNascimento">
-</div>
-<div>
-    <label for="campo-valor-hora">Valor hora</label>
-    <input type="number" id="campo-valor-hora">
-</div>
-<div>
-    <label for="campo-quantidade-hora">Quantidade de horas trabalhadas</label>
-    <input type="number" id="campo-quantidade-hora">
-</div>
-<div>
-    <label for="campo-vale-refeicao">Valor vale refeição</label>
-    <input type="number" id="campo-vale-refeicao">
-</div>
-<div>
-    <label for="campo-vale-tranporte">Valor vale transporte</label>
-    <input type="number" id="campo-vale-tranporte">
-</div>
-<div>
-    <label for="campo-plano-saude">Valor do plano de saúde</label>
-    <select id="campo-plano-saude">
-        <option value=300>R$ 300,00</option>
-        <option value=500>R$ 500,00</option>
-        <option value=700>R$ 700,00</option>
-    </select>
-</div>
+<div class="max-w-4xl mx-auto p-8 bg-white shadow-2xl rounded-2xl mt-10 space-y-6">
 
-<button (click)="salvar()">Salvar</button>
+    <h1 class="text-3xl font-bold text-gray-800 border-b pb-4">
+        Cadastro de Colaboradores
+    </h1>
 
-<ul>
+    <!-- FORMULÁRIO -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    @if (colaboradores.length === 0) {
-        <span>Não possui colaboradores cadastrados</span>
-    }@else {
-        @for (colaborador of colaboradores;let i = $index; track colaborador) {
-            <li>
-                {{colaborador}} - {{datasNacsimentos[i]}}
-                <button (click)="apagar(nome)" class="text-red-600"><li class="fa-solid fa-trash"></li></button>
-            </li>
+        <div class="flex flex-col">
+            <label for="campo-nome" class="mb-2 font-semibold text-gray-700">
+                Nome
+            </label>
+            <input
+                type="text"
+                id="campo-nome"
+                [(ngModel)]="nome"
+                class="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+        </div>
+
+        <div class="flex flex-col">
+            <label for="campo-data-nascimento" class="mb-2 font-semibold text-gray-700">
+                Data de nascimento
+            </label>
+            <input
+                type="text"
+                id="campo-data-nascimento"
+                [(ngModel)]="dataNascimento"
+                class="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+        </div>
+
+        <div class="flex flex-col">
+            <label for="campo-valor-hora" class="mb-2 font-semibold text-gray-700">
+                Valor hora
+            </label>
+            <input
+                type="number"
+                id="campo-valor-hora"
+                [(ngModel)]="valorHora"
+                class="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+        </div>
+
+        <div class="flex flex-col">
+            <label for="campo-quantidade-hora" class="mb-2 font-semibold text-gray-700">
+                Quantidade de horas trabalhadas
+            </label>
+            <input
+                type="number"
+                id="campo-quantidade-hora"
+                [(ngModel)]="quantidadeHora"
+                class="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+        </div>
+
+        <div class="flex flex-col">
+            <label for="campo-vale-refeicao" class="mb-2 font-semibold text-gray-700">
+                Valor vale refeição
+            </label>
+            <input
+                type="number"
+                id="campo-vale-refeicao"
+                [(ngModel)]="valeRefeicao"
+                class="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+        </div>
+
+        <div class="flex flex-col">
+            <label for="campo-vale-tranporte" class="mb-2 font-semibold text-gray-700">
+                Valor vale transporte
+            </label>
+            <input
+                type="number"
+                id="campo-vale-tranporte"
+                [(ngModel)]="valeTrasnporte"
+                class="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+        </div>
+
+        <div class="flex flex-col md:col-span-2">
+            <label for="campo-plano-saude" class="mb-2 font-semibold text-gray-700">
+                Valor do plano de saúde
+            </label>
+
+            <select
+                id="campo-plano-saude"
+                [(ngModel)]="planoSaude"
+                class="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+                <option value="300">R$ 300,00</option>
+                <option value="500">R$ 500,00</option>
+                <option value="700">R$ 700,00</option>
+            </select>
+        </div>
+
+    </div>
+
+    <!-- BOTÃO -->
+    <div class="flex justify-end">
+        <button
+            (click)="salvar()"
+            class="bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white font-semibold px-8 py-3 rounded-xl shadow-lg"
+        >
+            Salvar
+        </button>
+    </div>
+
+    <!-- LISTA -->
+    <div class="mt-10">
+
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">
+            Colaboradores
+        </h2>
+
+        @if (colaboradores.length === 0) {
+
+            <div class="bg-gray-100 text-gray-600 p-4 rounded-xl text-center">
+                Não possui colaboradores cadastrados
+            </div>
+
+        } @else {
+
+            <ul class="space-y-4">
+
+                @for (colaborador of colaboradores; let i = $index; track colaborador) {
+
+                    <li class="bg-gray-50 border border-gray-200 rounded-2xl p-5 shadow-sm">
+
+                        <div class="flex flex-col gap-3">
+
+                            <div class="text-lg font-bold text-gray-800">
+                                {{ colaborador }}
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600">
+
+                                <span><strong>Data nascimento:</strong> {{datasNascimentos[i]}}</span>
+                                <span><strong>Valor hora:</strong> R$ {{valoresHoras[i]}}</span>
+                                <span><strong>Horas:</strong> {{quantidadesHoras[i]}}</span>
+                                <span><strong>Vale refeição:</strong> R$ {{valesRefeicoes[i]}}</span>
+                                <span><strong>Vale transporte:</strong> R$ {{valesTrasnportes[i]}}</span>
+                                <span><strong>Plano saúde:</strong> R$ {{planosSaudes[i]}}</span>
+                                <span><strong>Salário bruto:</strong> R$ {{salariosBrutos[i]}}</span>
+                                <span><strong>Salário líquido:</strong> R$ {{salariosLiquidos[i]}}</span>
+
+                            </div>
+
+                            <div class="flex gap-4 mt-4">
+
+                                <button
+                                    (click)="apagar(colaborador)"
+                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl transition-all duration-300"
+                                >
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+
+                                <button
+                                    (click)="preencherEditar(
+                                        colaborador,
+                                        datasNascimentos[i],
+                                        valoresHoras[i],
+                                        quantidadesHoras[i],
+                                        valesRefeicoes[i],
+                                        valesTrasnportes[i],
+                                        planosSaudes[i]
+                                    )"
+                                    class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-xl transition-all duration-300"
+                                >
+                                    <i class="fa-solid fa-pencil"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </li>
+
+                }
+
+            </ul>
+
         }
-    }
 
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-</ul>
+</div>
